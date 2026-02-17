@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blogginrose-ui
+  labels:
+    app: blogginrose-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blogginrose-ui
+  template:
+    metadata:
+      labels:
+        app: blogginrose-ui
+    spec:
+      containers:
+        - name: blogginrose-ui
+          image: ${DOCKER_IMAGE}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: blogginrose-ui-config
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"

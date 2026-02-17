@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blogginrose-ui-config
+  labels:
+    app: blogginrose-ui
+data:
+  API_URL: "${API_URL}"
+  NEXT_PUBLIC_API_URL: "${API_URL}/api"
